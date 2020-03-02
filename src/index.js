@@ -1,19 +1,19 @@
-const { latestBlock, latestPrice } = require('./data')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import ThemeProvider from './providers/ThemeProvider'
+import App from './App'
+import * as serviceWorker from './serviceWorker'
 
-async function main() {
-  console.log('Waiting for next block...')
-  const block = await latestBlock()
-  const price = await latestPrice()
-  console.log()
-  console.log(`Current ETH price: ${price} USD`)
-  console.log()
-  console.log(`Block #${block.number} found, containing transactions:`)
-  block.transactions.forEach(({ hash, value }) =>
-    console.log(`  - Hash: ${hash} | Value: ${value}`)
-  )
-  console.log()
-}
+ReactDOM.render(
+  <ThemeProvider>
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root')
+)
 
-main()
-  .catch(err => console.err('Errored', err))
-  .finally(() => process.exit(0))
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()

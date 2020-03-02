@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/aragonone/js-challengestatic/js/main.137b9802.chunk.js",
+    "main.js.map": "/aragonone/js-challengestatic/js/main.137b9802.chunk.js.map",
+    "runtime-main.js": "/aragonone/js-challengestatic/js/runtime-main.313c95ca.js",
+    "runtime-main.js.map": "/aragonone/js-challengestatic/js/runtime-main.313c95ca.js.map",
+    "static/css/2.85b4c6a1.chunk.css": "/aragonone/js-challengestatic/css/2.85b4c6a1.chunk.css",
+    "static/js/2.86d0ae9c.chunk.js": "/aragonone/js-challengestatic/js/2.86d0ae9c.chunk.js",
+    "static/js/2.86d0ae9c.chunk.js.map": "/aragonone/js-challengestatic/js/2.86d0ae9c.chunk.js.map",
+    "index.html": "/aragonone/js-challengeindex.html",
+    "precache-manifest.a3198d8827f6f6a839c20b7ddaf5c3e9.js": "/aragonone/js-challengeprecache-manifest.a3198d8827f6f6a839c20b7ddaf5c3e9.js",
+    "service-worker.js": "/aragonone/js-challengeservice-worker.js",
+    "static/css/2.85b4c6a1.chunk.css.map": "/aragonone/js-challengestatic/css/2.85b4c6a1.chunk.css.map",
+    "static/js/2.86d0ae9c.chunk.js.LICENSE.txt": "/aragonone/js-challengestatic/js/2.86d0ae9c.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/aragonone/js-challengestatic/media/ibm-plex-sans-latin-700italic.72e9af40.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.313c95ca.js",
+    "static/css/2.85b4c6a1.chunk.css",
+    "static/js/2.86d0ae9c.chunk.js",
+    "static/js/main.137b9802.chunk.js"
+  ]
+}
