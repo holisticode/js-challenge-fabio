@@ -1,12 +1,15 @@
 import React from 'react';
 
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+
 import * as d3 from "d3";
 
 import { latestBlock, latestPrice } from '../data'
 
 import {ValueRow, ValueField } from './sections'
 //import EthereumBlockchainMonitor from '../graphs/blockmonitor'
-import Block from '../components/blocks'
+import {Block, BlockDetail} from '../components/blocks'
 
 export default class MonitorPage extends React.Component {
   constructor(props) {
@@ -21,9 +24,9 @@ export default class MonitorPage extends React.Component {
       txs: [],
       elapsed: "00:00:00",
       time: 0,
+      selectedBlock: {} 
     }
 
-    console.log(this.state.blocks);
     this.rtChart = React.createRef();
   }
 
@@ -31,9 +34,7 @@ export default class MonitorPage extends React.Component {
     if (!this.state.initialized) {
       this.getBlocks();
     }
-    console.log(this.state.blocks);
     this.setState({initialized: true});
-    console.log(this.state.blocks);
     this.startClock();
   }
 
@@ -53,17 +54,38 @@ export default class MonitorPage extends React.Component {
             right={
               <ValueField label="Time elapsed since start" value={this.state.elapsed}  align="right" />
             } 
-        />
-        <ul>
-          {
-            this.state.blocks.map((block) => {
-            return <li><Block value={block.timestamp}/></li>
-            })
-          }
-        </ul>
+          />
+          <Container>
+            <Grid container>
+              <Grid item xs={4}>
+                 <ul style={{listStyleType:"none", padding: 0, margin: 0}}>
+                   {
+                     this.state.blocks.map((block) => {
+                     return <li onClick={() => this.handleBlockSelected(block)} key={block.number} style={{cursor: "pointer"}}><Block selected={block==this.state.selectedBlock} value={block.timestamp}/></li>
+                     })
+                   }
+                 </ul>
+              </Grid>
+              <Grid item xs={4}>
+                <BlockDetail block={this.state.selectedBlock} />
+              </Grid>
+            </Grid>
+          </Container>
         </div>
       )
    }
+
+  handleBlockSelected(block) {
+    //this.selectedBlock = block;
+    this.setState({selectedBlock: block});
+  }
+
+
+  showBlock(block) {
+    this.setState({
+      selectedBlock: block
+    })
+  }
 
   async getBlocks() {
     console.log('Waiting for next block...')
@@ -78,7 +100,6 @@ export default class MonitorPage extends React.Component {
   }
 
   createBlockNode(block) {
-    console.log(this.state.blocks);
     let total = 0;
     let txs = [];
     block.transactions.forEach(({ hash, value }) => {
@@ -86,7 +107,6 @@ export default class MonitorPage extends React.Component {
         total += parseInt(value);
       }
     )
-    console.log(this.state.blocks);
     this.setState((state) => {
       console.log(state);
         state.value = total;
@@ -94,6 +114,7 @@ export default class MonitorPage extends React.Component {
         state.blocks = [...state.blocks, block];
         return state;
     });
+    this.getBlocks();
     /*
     let node = {
         // complex data item; four attributes (type, color, opacity and size) are changing dynamically with each iteration (as an example)
